@@ -23,8 +23,8 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto mt-24 mb-8">
-      <h3 className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground/50 text-center mb-12">
+    <div className="w-full max-w-3xl mx-auto mt-14 mb-4">
+      <h3 className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground/50 text-center mb-8">
         How it works
       </h3>
       <div className="relative flex flex-col sm:flex-row items-stretch gap-6 sm:gap-0">

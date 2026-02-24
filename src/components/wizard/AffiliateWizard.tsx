@@ -42,7 +42,7 @@ const AffiliateWizard = () => {
   const totalSteps = 5;
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-20">
+    <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-16">
       {/* Ambient background orbs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl animate-float" />
