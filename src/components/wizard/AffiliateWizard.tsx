@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Instagram, Youtube, Twitter } from "lucide-react";
 import StepHero from "@/components/wizard/StepHero";
 import StepPlatform from "@/components/wizard/StepPlatform";
 import StepReach from "@/components/wizard/StepReach";
@@ -42,70 +43,49 @@ const AffiliateWizard = () => {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-20">
-      {/* SVG filter for liquid distortion on hover */}
-      <svg className="absolute h-0 w-0" aria-hidden="true">
-        <defs>
-          <filter id="liquid-distortion">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" seed="2" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
-
       {/* Ambient background orbs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-primary/8 blur-3xl animate-float" style={{ animationDelay: "3s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-primary/3 blur-3xl animate-float" style={{ animationDelay: "5s" }} />
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl animate-float" />
+        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-primary/8 blur-3xl animate-float" style={{ animationDelay: "3s" }} />
       </div>
 
-      {/* Hero step renders full-width (no wrapper) */}
-      {step === 0 && (
-        <div className={animating ? "step-exit" : "liquid-transition"} key={step}>
-          <StepHero onStart={() => goTo(1)} />
+      {step > 0 && step < 5 && (
+        <div className="mb-12 w-full max-w-md">
+          <ProgressBar current={step} total={totalSteps - 1} />
         </div>
       )}
 
-      {/* Wizard steps 1-4 housed inside a centered glass wrapper */}
-      {step > 0 && (
-        <div className="glass-wrapper w-full max-w-lg px-6 sm:px-10 py-10 sm:py-14">
-          {step < 5 && (
-            <div className="mb-10">
-              <ProgressBar current={step} total={totalSteps - 1} />
-            </div>
-          )}
-          <div className={animating ? "step-exit" : "liquid-transition"} key={step}>
-            {step === 1 && (
-              <StepPlatform
-                selected={data.platform}
-                onSelect={(p) => {
-                  updateData({ platform: p });
-                  goTo(2);
-                }}
-              />
-            )}
-            {step === 2 && (
-              <StepReach
-                selected={data.reach}
-                onSelect={(r) => {
-                  updateData({ reach: r });
-                  goTo(3);
-                }}
-                onBack={() => goTo(1)}
-              />
-            )}
-            {step === 3 && (
-              <StepIdentity
-                data={data}
-                onUpdate={updateData}
-                onSubmit={() => goTo(4)}
-                onBack={() => goTo(2)}
-              />
-            )}
-            {step === 4 && <StepConfirmation data={data} />}
-          </div>
-        </div>
-      )}
+      <div className={animating ? "step-exit" : "liquid-transition"} key={step}>
+        {step === 0 && <StepHero onStart={() => goTo(1)} />}
+        {step === 1 && (
+          <StepPlatform
+            selected={data.platform}
+            onSelect={(p) => {
+              updateData({ platform: p });
+              goTo(2);
+            }}
+          />
+        )}
+        {step === 2 && (
+          <StepReach
+            selected={data.reach}
+            onSelect={(r) => {
+              updateData({ reach: r });
+              goTo(3);
+            }}
+            onBack={() => goTo(1)}
+          />
+        )}
+        {step === 3 && (
+          <StepIdentity
+            data={data}
+            onUpdate={updateData}
+            onSubmit={() => goTo(4)}
+            onBack={() => goTo(2)}
+          />
+        )}
+        {step === 4 && <StepConfirmation data={data} />}
+      </div>
 
       {step < 4 && <ScarcityTicker />}
     </div>
