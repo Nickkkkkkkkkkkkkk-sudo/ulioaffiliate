@@ -8,7 +8,7 @@ const StepHero = ({ onStart }: { onStart: () => void }) => {
       </div>
       <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-foreground leading-[1.08] mb-4">
         Partner with{" "}
-        <span className="text-primary" style={{ textShadow: "0 0 20px hsla(271, 76%, 53%, 0.6), 0 0 40px hsla(271, 76%, 53%, 0.3)" }}>ulio.ai</span>
+        <span className="text-primary" style={{ textShadow: "0 0 15px hsla(271, 76%, 53%, 0.3), 0 0 30px hsla(271, 76%, 53%, 0.15)" }}>ulio.ai</span>
       </h1>
       <p className="text-base sm:text-lg text-muted-foreground max-w-md mb-8 leading-relaxed">
         Join our exclusive network of creators and earn while sharing tools your audience will love.
