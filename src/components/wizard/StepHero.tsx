@@ -1,10 +1,11 @@
 import TrustBar from "./TrustBar";
 import HowItWorks from "./HowItWorks";
+import TargetMarket from "./TargetMarket";
 
 const StepHero = ({ onStart }: { onStart: () => void }) => {
   return (
     <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-      <div className="mb-6 text-sm font-medium tracking-widest uppercase text-primary/70">
+      <div className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-primary/70">
         ulio.ai affiliate program
       </div>
       <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground leading-[1.05] mb-6">
@@ -20,6 +21,7 @@ const StepHero = ({ onStart }: { onStart: () => void }) => {
 
       <TrustBar />
       <HowItWorks />
+      <TargetMarket />
     </div>
   );
 };
