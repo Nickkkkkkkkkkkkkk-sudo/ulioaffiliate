@@ -6,7 +6,7 @@ import StepReach from "@/components/wizard/StepReach";
 import StepIdentity from "@/components/wizard/StepIdentity";
 import StepConfirmation from "@/components/wizard/StepConfirmation";
 import ProgressBar from "@/components/wizard/ProgressBar";
-import ScarcityTicker from "@/components/wizard/ScarcityTicker";
+
 
 export interface WizardData {
   platform: string;
@@ -87,7 +87,7 @@ const AffiliateWizard = () => {
         {step === 4 && <StepConfirmation data={data} />}
       </div>
 
-      {step < 4 && <ScarcityTicker />}
+      
     </div>
   );
 };
