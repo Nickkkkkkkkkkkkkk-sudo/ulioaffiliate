@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
+import win1 from "@/assets/win-1.png";
+import win2 from "@/assets/win-2.png";
+import win3 from "@/assets/win-3.png";
+import win4 from "@/assets/win-4.png";
 
-const results = [
-  { name: "Sarah K.", platform: "Instagram", earned: "$4,230", period: "last 30 days" },
-  { name: "Marcus T.", platform: "YouTube", earned: "$8,715", period: "last 30 days" },
-  { name: "Jenna L.", platform: "TikTok", earned: "$3,890", period: "last 30 days" },
-  { name: "David R.", platform: "Twitter", earned: "$2,140", period: "last 30 days" },
-];
+const wins = [win1, win2, win3, win4];
 
 const AffiliateStats = () => {
   const [totalEarnings, setTotalEarnings] = useState(247_832);
@@ -29,15 +28,16 @@ const AffiliateStats = () => {
         </span>
       </div>
 
-      {/* Results grid */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {results.map((r) => (
-          <div key={r.name} className="glass-panel px-5 py-4 flex items-center justify-between">
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-foreground">{r.name}</span>
-              <span className="text-xs text-muted-foreground">{r.platform} · {r.period}</span>
-            </div>
-            <span className="text-sm font-bold text-primary">{r.earned}</span>
+      {/* Win receipts */}
+      <div className="w-full grid grid-cols-2 gap-3">
+        {wins.map((src, i) => (
+          <div key={i} className="glass-panel overflow-hidden rounded-xl">
+            <img
+              src={src}
+              alt={`Affiliate payout receipt ${i + 1}`}
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
