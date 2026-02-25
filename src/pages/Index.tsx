@@ -6,7 +6,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background">
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center px-6 sm:px-10 py-5">
+      <header className="fixed top-0 left-0 z-50 px-6 sm:px-10 py-5">
         <button
           onClick={() => setResetKey((k) => k + 1)}
           className="text-xl font-bold tracking-tight text-foreground transition-all hover:opacity-80"
