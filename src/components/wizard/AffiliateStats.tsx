@@ -11,10 +11,11 @@ import win9 from "@/assets/win-9.png";
 import win10 from "@/assets/win-10.jpeg";
 import win11 from "@/assets/win-11.jpg";
 import win12 from "@/assets/win-12.png";
+import win13 from "@/assets/win-13.png";
 
 const col1 = [win5, win1, win8, win10];
 const col2 = [win6, win7, win9, win12];
-const col3 = [win2, win3, win4, win11];
+const col3 = [win2, win3, win4, win11, win13];
 
 const START = 248_430;
 const END = 256_378;
@@ -119,7 +120,7 @@ const AffiliateStats = () => {
         {[col1, col2, col3].map((col, ci) => (
           <div key={ci} className="flex flex-col gap-3">
             {col.map((src, i) => {
-              const isLast = ci === 1 && i === col.length - 1;
+              const isLast = ci === 2 && i === col.length - 1;
               return (
                 <div key={i} className="glass-panel overflow-hidden rounded-xl relative">
                   <img
