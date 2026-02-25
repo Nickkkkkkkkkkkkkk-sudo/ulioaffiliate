@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 
 const tiers = [
-  { id: "under10k", label: "Under 10K", description: "Growing creator" },
+  { id: "under10k", label: "Under 10K", description: "Growing creator or haven't started posting yet" },
   { id: "10k-50k", label: "10K – 50K", description: "Rising influence" },
   { id: "50k-100k", label: "50K – 100K", description: "Established presence" },
   { id: "100k+", label: "100K+", description: "Major reach" },
