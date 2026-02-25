@@ -1,21 +1,12 @@
 import { useState, useEffect, useRef, memo } from "react";
-import win1 from "@/assets/win-1.png";
-import win2 from "@/assets/win-2.png";
-import win3 from "@/assets/win-3.png";
-import win4 from "@/assets/win-4.png";
-import win5 from "@/assets/win-5.jpeg";
-import win6 from "@/assets/win-6.png";
-import win7 from "@/assets/win-7.png";
-import win8 from "@/assets/win-8.png";
-import win9 from "@/assets/win-9.png";
 import win10 from "@/assets/win-10.jpeg";
 import win11 from "@/assets/win-11.jpg";
 import win12 from "@/assets/win-12.png";
 import win13 from "@/assets/win-13.png";
 
-const col1 = [win5, win1, win8, win10];
-const col2 = [win6, win7, win9, win12];
-const col3 = [win2, win3, win4, win11, win13];
+const col1 = [win10];
+const col2 = [win11, win12];
+const col3 = [win13];
 
 const START = 248_430;
 const END = 256_378;
