@@ -8,10 +8,12 @@ import win6 from "@/assets/win-6.png";
 import win7 from "@/assets/win-7.png";
 import win8 from "@/assets/win-8.png";
 import win9 from "@/assets/win-9.png";
+import win10 from "@/assets/win-10.jpeg";
+import win11 from "@/assets/win-11.jpg";
 
-const col1 = [win5, win1, win8];
+const col1 = [win5, win1, win8, win10];
 const col2 = [win6, win7, win9];
-const col3 = [win2, win3, win4];
+const col3 = [win2, win3, win4, win11];
 
 const START = 248_430;
 const END = 256_378;
