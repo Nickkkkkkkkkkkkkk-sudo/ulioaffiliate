@@ -3,8 +3,15 @@ import win1 from "@/assets/win-1.png";
 import win2 from "@/assets/win-2.png";
 import win3 from "@/assets/win-3.png";
 import win4 from "@/assets/win-4.png";
+import win5 from "@/assets/win-5.jpeg";
+import win6 from "@/assets/win-6.png";
+import win7 from "@/assets/win-7.png";
+import win8 from "@/assets/win-8.png";
+import win9 from "@/assets/win-9.png";
 
-const wins = [win1, win2, win3, win4];
+const col1 = [win5, win1, win8];
+const col2 = [win6, win7, win9];
+const col3 = [win2, win3, win4];
 
 const START = 248_430;
 const END = 256_378;
@@ -105,15 +112,19 @@ const AffiliateStats = () => {
         </span>
       </div>
 
-      <div className="w-full grid grid-cols-2 gap-3">
-        {wins.map((src, i) => (
-          <div key={i} className="glass-panel overflow-hidden rounded-xl">
-            <img
-              src={src}
-              alt={`Affiliate payout receipt ${i + 1}`}
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
+      <div className="w-full grid grid-cols-3 gap-3">
+        {[col1, col2, col3].map((col, ci) => (
+          <div key={ci} className="flex flex-col gap-3">
+            {col.map((src, i) => (
+              <div key={i} className="glass-panel overflow-hidden rounded-xl">
+                <img
+                  src={src}
+                  alt={`Affiliate payout receipt ${ci * 3 + i + 1}`}
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
