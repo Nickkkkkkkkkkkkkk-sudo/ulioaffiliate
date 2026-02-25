@@ -1,12 +1,5 @@
 import { useState, useEffect, useRef, memo } from "react";
-import win10 from "@/assets/win-10.jpeg";
-import win11 from "@/assets/win-11.jpg";
-import win12 from "@/assets/win-12.png";
-import win13 from "@/assets/win-13.png";
-
-const col1 = [win10];
-const col2 = [win11, win12];
-const col3 = [win13];
+import viewsStats from "@/assets/views-stats.png";
 
 const START = 248_430;
 const END = 256_378;
@@ -107,29 +100,20 @@ const AffiliateStats = () => {
         </span>
       </div>
 
-      <div className="w-full grid grid-cols-3 gap-3 items-start">
-        {[col1, col2, col3].map((col, ci) => (
-          <div key={ci} className="flex flex-col gap-3">
-            {col.map((src, i) => {
-              const isLast = ci === 2 && i === col.length - 1;
-              return (
-                <div key={i} className="overflow-hidden rounded-xl relative">
-                  <img
-                    src={src}
-                    alt={`Affiliate payout receipt ${ci * 3 + i + 1}`}
-                    className="w-full h-auto object-cover"
-                    loading="lazy"
-                  />
-                  {isLast && (
-                    <div className="absolute inset-0 backdrop-blur-sm bg-background/30 flex items-center justify-center">
-                      <span className="text-2xl sm:text-3xl font-bold text-foreground">99+</span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ))}
+      {/* Views to Money graphic */}
+      <div className="w-full flex flex-col items-center gap-6">
+        <div className="flex items-center gap-3 text-lg sm:text-xl font-semibold text-foreground">
+          <span>👁️ Views</span>
+          <span className="text-primary text-2xl">→</span>
+          <span>💰 Money</span>
+        </div>
+        <div className="w-full max-w-sm mx-auto overflow-hidden rounded-2xl shadow-lg">
+          <img
+            src={viewsStats}
+            alt="View counts showing viral reach turning into earnings"
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </div>
     </div>
   );
