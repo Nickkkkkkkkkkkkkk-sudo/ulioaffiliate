@@ -126,7 +126,7 @@ const AffiliateStats = () => {
                     loading="lazy"
                   />
                   {isLast && (
-                    <div className="absolute inset-0 backdrop-blur-md bg-background/40 flex items-center justify-center">
+                    <div className="absolute inset-0 backdrop-blur-sm bg-background/30 flex items-center justify-center">
                       <span className="text-2xl sm:text-3xl font-bold text-foreground">99+</span>
                     </div>
                   )}
