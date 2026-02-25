@@ -3,7 +3,7 @@ import AffiliateStats from "./AffiliateStats";
 
 const StepHero = ({ onStart }: { onStart: () => void }) => {
   return (
-    <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+    <div className="flex flex-col items-center text-center w-full">
       <div className="mb-4 text-sm font-medium tracking-widest uppercase text-primary/70">
         ulio.ai affiliate program
       </div>
