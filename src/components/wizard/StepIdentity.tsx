@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import type { WizardData } from "./AffiliateWizard";
 
 const StepIdentity = ({
@@ -14,6 +16,8 @@ const StepIdentity = ({
   onBack: () => void;
 }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -25,9 +29,35 @@ const StepIdentity = ({
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (ev: React.FormEvent) => {
+  const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
-    if (validate()) onSubmit();
+    if (!validate()) return;
+
+    setSubmitting(true);
+    try {
+      const { data: result, error } = await supabase.functions.invoke("send-application", {
+        body: {
+          platform: data.platform,
+          reach: data.reach,
+          handle: data.handle.trim(),
+          fullName: data.fullName.trim(),
+          email: data.email.trim(),
+        },
+      });
+
+      if (error) throw error;
+
+      onSubmit();
+    } catch (err: any) {
+      console.error("Submit error:", err);
+      toast({
+        title: "Submission failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -46,7 +76,8 @@ const StepIdentity = ({
             placeholder="@yourhandle"
             value={data.handle}
             onChange={(e) => onUpdate({ handle: e.target.value })}
-            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+            disabled={submitting}
+            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow disabled:opacity-50"
           />
           {errors.handle && <span className="text-xs text-destructive mt-1 block">{errors.handle}</span>}
         </div>
@@ -57,7 +88,8 @@ const StepIdentity = ({
             placeholder="Jane Doe"
             value={data.fullName}
             onChange={(e) => onUpdate({ fullName: e.target.value })}
-            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+            disabled={submitting}
+            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow disabled:opacity-50"
           />
           {errors.fullName && <span className="text-xs text-destructive mt-1 block">{errors.fullName}</span>}
         </div>
@@ -68,17 +100,30 @@ const StepIdentity = ({
             placeholder="you@email.com"
             value={data.email}
             onChange={(e) => onUpdate({ email: e.target.value })}
-            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+            disabled={submitting}
+            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow disabled:opacity-50"
           />
           {errors.email && <span className="text-xs text-destructive mt-1 block">{errors.email}</span>}
         </div>
-        <button type="submit" className="glow-button w-full mt-4 text-base py-4 rounded-xl">
-          Submit Application
+        <button
+          type="submit"
+          disabled={submitting}
+          className="glow-button w-full mt-4 text-base py-4 rounded-xl inline-flex items-center justify-center gap-2 disabled:opacity-70"
+        >
+          {submitting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Submitting…
+            </>
+          ) : (
+            "Submit Application"
+          )}
         </button>
       </form>
       <button
         onClick={onBack}
-        className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        disabled={submitting}
+        className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
       >
         <ArrowLeft className="h-4 w-4" /> Back
       </button>
