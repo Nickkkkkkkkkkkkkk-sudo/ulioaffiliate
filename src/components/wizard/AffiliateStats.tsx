@@ -112,19 +112,27 @@ const AffiliateStats = () => {
         </span>
       </div>
 
-      <div className="w-full grid grid-cols-3 gap-3">
+      <div className="w-full grid grid-cols-3 gap-3 items-end">
         {[col1, col2, col3].map((col, ci) => (
           <div key={ci} className="flex flex-col gap-3">
-            {col.map((src, i) => (
-              <div key={i} className="glass-panel overflow-hidden rounded-xl">
-                <img
-                  src={src}
-                  alt={`Affiliate payout receipt ${ci * 3 + i + 1}`}
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-            ))}
+            {col.map((src, i) => {
+              const isLast = ci === 2 && i === col.length - 1;
+              return (
+                <div key={i} className="glass-panel overflow-hidden rounded-xl relative">
+                  <img
+                    src={src}
+                    alt={`Affiliate payout receipt ${ci * 3 + i + 1}`}
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                  {isLast && (
+                    <div className="absolute inset-0 backdrop-blur-md bg-background/40 flex items-center justify-center">
+                      <span className="text-2xl sm:text-3xl font-bold text-foreground">99+</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
