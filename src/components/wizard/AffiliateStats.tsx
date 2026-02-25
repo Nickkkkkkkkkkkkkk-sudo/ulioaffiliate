@@ -112,7 +112,7 @@ const AffiliateStats = () => {
         </span>
       </div>
 
-      <div className="w-full grid grid-cols-3 gap-3 items-end">
+      <div className="w-full grid grid-cols-3 gap-3 items-start">
         {[col1, col2, col3].map((col, ci) => (
           <div key={ci} className="flex flex-col gap-3">
             {col.map((src, i) => {
