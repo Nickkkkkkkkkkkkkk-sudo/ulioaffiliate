@@ -113,7 +113,7 @@ const AffiliateStats = () => {
             {col.map((src, i) => {
               const isLast = ci === 2 && i === col.length - 1;
               return (
-                <div key={i} className="glass-panel overflow-hidden rounded-xl relative">
+                <div key={i} className="overflow-hidden rounded-xl relative">
                   <img
                     src={src}
                     alt={`Affiliate payout receipt ${ci * 3 + i + 1}`}
