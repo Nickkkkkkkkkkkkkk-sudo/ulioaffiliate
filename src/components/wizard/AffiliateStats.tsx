@@ -100,7 +100,7 @@ const AffiliateStats = () => {
   const formatted = `$${earnings.toLocaleString()}`;
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-16 flex flex-col items-center gap-8">
+    <div className="w-screen relative left-1/2 -translate-x-1/2 mt-16 flex flex-col items-center gap-8 px-4">
       <div className="glass-panel px-6 py-4 flex flex-col items-center gap-1">
         <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
           Total Affiliate Earnings
