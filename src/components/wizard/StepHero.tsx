@@ -1,4 +1,5 @@
 import HowItWorks from "./HowItWorks";
+import AffiliateStats from "./AffiliateStats";
 
 const StepHero = ({ onStart }: { onStart: () => void }) => {
   return (
@@ -18,6 +19,7 @@ const StepHero = ({ onStart }: { onStart: () => void }) => {
       </button>
 
       <HowItWorks />
+      <AffiliateStats />
     </div>
   );
 };
