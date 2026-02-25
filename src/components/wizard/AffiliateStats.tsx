@@ -15,44 +15,61 @@ function getEarnings() {
   const now = Date.now();
   const startOfDay = new Date(now).setHours(0, 0, 0, 0);
   const progress = (now - startOfDay) / DAY_MS;
-  return START + Math.floor(progress * RANGE);
+  return START + Math.floor((progress * RANGE) / 30) * 30;
 }
 
-/* Single animated digit with vertical scroll */
-const AnimatedDigit = memo(({ digit }: { digit: string }) => {
+const AnimatedDigit = memo(({ digit, index }: { digit: string; index: number }) => {
   const isNumber = /\d/.test(digit);
-  const prevDigit = useRef(digit);
-  const [from, setFrom] = useState(digit);
-  const [to, setTo] = useState(digit);
-  const [animating, setAnimating] = useState(false);
+  const prevRef = useRef(digit);
+  const [displayDigit, setDisplayDigit] = useState(digit);
+  const [prevDisplayDigit, setPrevDisplayDigit] = useState(digit);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    if (digit !== prevDigit.current && isNumber) {
-      setFrom(prevDigit.current);
-      setTo(digit);
-      setAnimating(true);
-      const t = setTimeout(() => {
-        setAnimating(false);
-        setFrom(digit);
-      }, 400);
-      prevDigit.current = digit;
-      return () => clearTimeout(t);
+    if (digit !== prevRef.current && isNumber) {
+      setPrevDisplayDigit(prevRef.current);
+      setDisplayDigit(digit);
+      setShouldAnimate(true);
+    } else if (!isNumber) {
+      setDisplayDigit(digit);
     }
-    prevDigit.current = digit;
+    prevRef.current = digit;
   }, [digit, isNumber]);
 
+  const handleTransitionEnd = () => {
+    setShouldAnimate(false);
+    setPrevDisplayDigit(displayDigit);
+  };
+
   if (!isNumber) {
-    return <span className="inline-block">{digit}</span>;
+    return <span>{digit}</span>;
   }
 
   return (
-    <span className="relative inline-block w-[0.62em] h-[1.15em] overflow-hidden align-bottom">
+    <span
+      className="inline-block overflow-hidden"
+      style={{ width: "0.62em", height: "1.2em", position: "relative", verticalAlign: "bottom" }}
+    >
       <span
-        className="absolute left-0 right-0 flex flex-col items-center transition-transform duration-400 ease-out"
-        style={{ transform: animating ? "translateY(-50%)" : "translateY(0)" }}
+        onTransitionEnd={handleTransitionEnd}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          left: 0,
+          right: 0,
+          transition: shouldAnimate ? "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)" : "none",
+          transform: shouldAnimate ? "translateY(-1.2em)" : "translateY(0)",
+        }}
       >
-        <span className="h-[1.15em] flex items-center justify-center">{from}</span>
-        <span className="h-[1.15em] flex items-center justify-center">{to}</span>
+        <span style={{ height: "1.2em", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {shouldAnimate ? prevDisplayDigit : displayDigit}
+        </span>
+        {shouldAnimate && (
+          <span style={{ height: "1.2em", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {displayDigit}
+          </span>
+        )}
       </span>
     </span>
   );
@@ -64,7 +81,11 @@ const AffiliateStats = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setEarnings(getEarnings());
+      setEarnings((prev) => {
+        const target = getEarnings();
+        if (target > prev) return prev + 30;
+        return target;
+      });
     }, 2400);
     return () => clearInterval(interval);
   }, []);
@@ -73,19 +94,17 @@ const AffiliateStats = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto mt-16 flex flex-col items-center gap-8">
-      {/* Earnings ticker */}
       <div className="glass-panel px-6 py-4 flex flex-col items-center gap-1">
         <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
           Total Affiliate Earnings
         </span>
         <span className="text-3xl sm:text-4xl font-bold tracking-tight text-primary tabular-nums flex">
           {formatted.split("").map((char, i) => (
-            <AnimatedDigit key={i} digit={char} />
+            <AnimatedDigit key={i} digit={char} index={i} />
           ))}
         </span>
       </div>
 
-      {/* Win receipts */}
       <div className="w-full grid grid-cols-2 gap-3">
         {wins.map((src, i) => (
           <div key={i} className="glass-panel overflow-hidden rounded-xl">
