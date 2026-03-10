@@ -101,7 +101,7 @@ const StepIdentity = ({
             value={data.email}
             onChange={(e) => onUpdate({ email: e.target.value })}
             disabled={submitting}
-            className="w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow disabled:opacity-50"
+            className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow disabled:opacity-50"
           />
           {errors.email && <span className="text-xs text-destructive mt-1 block">{errors.email}</span>}
         </div>
