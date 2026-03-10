@@ -208,4 +208,24 @@
     background: linear-gradient(90deg, hsl(var(--primary)), hsl(271 85% 65%));
     box-shadow: 0 0 12px hsla(var(--glow-color) / 0.4);
   }
+
+  @keyframes gradientMove {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    33% { transform: scale(1.1) translate(5%, -3%); }
+    66% { transform: scale(0.95) translate(-3%, 5%); }
+  }
+
+  @keyframes gradientMoveReverse {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    33% { transform: scale(1.05) translate(-5%, 3%); }
+    66% { transform: scale(1.1) translate(3%, -5%); }
+  }
+
+  .animate-gradient-move {
+    animation: gradientMove 8s ease-in-out infinite;
+  }
+
+  .animate-gradient-move-reverse {
+    animation: gradientMoveReverse 10s ease-in-out infinite;
+  }
 }
