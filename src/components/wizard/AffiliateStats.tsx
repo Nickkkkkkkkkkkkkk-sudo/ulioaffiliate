@@ -115,6 +115,87 @@ const AffiliateStats = () => {
           />
         </div>
       </div>
+
+      {/* Purple gradient background section with glassmorphism card */}
+      <div className="relative w-full rounded-3xl overflow-hidden py-16 px-4 mt-4">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-[hsl(271,50%,12%)]">
+          <div className="absolute inset-0 opacity-60 animate-gradient-move"
+            style={{
+              background: "radial-gradient(ellipse at 20% 50%, hsla(271,76%,40%,0.6) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, hsla(280,80%,50%,0.4) 0%, transparent 50%), radial-gradient(ellipse at 60% 80%, hsla(260,70%,35%,0.5) 0%, transparent 55%)",
+            }}
+          />
+          <div className="absolute inset-0 opacity-40 animate-gradient-move-reverse"
+            style={{
+              background: "radial-gradient(ellipse at 70% 60%, hsla(290,60%,45%,0.5) 0%, transparent 50%), radial-gradient(ellipse at 30% 80%, hsla(265,80%,55%,0.3) 0%, transparent 55%)",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Glassmorphism Card */}
+          <div className="relative w-full max-w-[400px] h-[300px] rounded-2xl overflow-hidden"
+            style={{
+              background: "rgba(224, 242, 254, 0.1)",
+              backdropFilter: "blur(12px) saturate(120%)",
+              WebkitBackdropFilter: "blur(12px) saturate(120%)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              boxShadow: "0px 8px 24px 0 rgba(12, 74, 110, 0.15), inset 0px 0px 4px 2px rgba(255, 255, 255, 0.2)",
+            }}
+          >
+            {/* Reflection overlays */}
+            <div className="absolute inset-0 pointer-events-none rounded-inherit z-[1]"
+              style={{ background: "linear-gradient(to left top, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)" }}
+            />
+            <div className="absolute inset-0 pointer-events-none rounded-inherit z-[1]"
+              style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 100%)" }}
+            />
+
+            <div className="relative z-10 w-full h-full flex flex-col justify-between p-6 text-white" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.2)" }}>
+              {/* Header */}
+              <div className="flex justify-between items-start">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-primary" style={{ background: "rgba(255,255,255,0.1)" }}>
+                    <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="font-semibold text-sm m-0">Jane Doe</p>
+                    <p className="text-xs opacity-70 m-0">UX Designer</p>
+                  </div>
+                </div>
+                <svg className="w-5 h-5 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </div>
+
+              {/* Body */}
+              <div className="text-center mt-2">
+                <h3 className="text-lg font-bold mb-1">Styled Component</h3>
+                <p className="text-sm opacity-70 mb-4">This is a sample of how your content might look inside.</p>
+                <button className="w-full py-2 px-4 rounded-lg font-semibold text-white cursor-pointer transition-all duration-200 hover:bg-white/20"
+                  style={{
+                    background: "rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    backdropFilter: "blur(8px)",
+                    boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                  }}
+                >
+                  Get Started
+                </button>
+              </div>
+
+              {/* Tip */}
+              <p className="text-xs text-center text-[#e0e6ed] mt-4">
+                Tip: Try adjusting the sliders and colors to see real-time changes!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
