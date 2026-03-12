@@ -229,18 +229,22 @@ const SocialToRevenue = () => {
             const floatR = isScattered ? Math.sin(floatTime * 0.35 + i * 1.5) * float.dr : 0;
 
             const pos = isScattered ? scattered : stacked;
-            const x = pos.x + floatX;
-            const y = pos.y + floatY;
+            const mobileStackScale = isMobile && !isScattered ? 1.35 : 1;
+            const x = (pos.x + floatX) * mobileStackScale;
+            const y = (pos.y + floatY) * mobileStackScale;
             const rotate = pos.rotate + floatR;
-            const scale = pos.scale;
+            const scale = pos.scale * mobileStackScale;
+
+            const cardW = isScattered ? CARD_W : CARD_W * mobileStackScale;
+            const cardH = isScattered ? CARD_H : CARD_H * mobileStackScale;
 
             return (
               <div
                 key={video.id}
                 className="absolute rounded-xl overflow-hidden"
                 style={{
-                  width: CARD_W,
-                  height: CARD_H,
+                  width: cardW,
+                  height: cardH,
                   transform: `translate(${x}px, ${y}px) rotate(${rotate}deg) scale(${scale})`,
                   transition: isScattered && !isUnstacking
                     ? "none"
