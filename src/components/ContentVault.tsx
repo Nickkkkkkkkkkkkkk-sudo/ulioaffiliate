@@ -191,15 +191,12 @@ const ContentVault = () => {
 
         {/* Bottom bar */}
         <div
-          className="flex items-center justify-between px-4 py-2"
+          className="flex items-center justify-end px-4 py-2"
           style={{
             background: "hsla(271, 20%, 12%, 0.6)",
             borderTop: "1px solid hsla(0, 0%, 100%, 0.06)",
           }}
         >
-          <span className="text-[10px] text-muted-foreground/50">
-            {DOCUMENTS.length} items
-          </span>
           <span className="text-[10px] text-muted-foreground/50">
             Updated today
           </span>
