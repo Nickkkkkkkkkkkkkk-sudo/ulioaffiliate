@@ -14,7 +14,7 @@ const NeatBackground = () => {
         { color: "#000000", enabled: true },
         { color: "#000000", enabled: true },
         { color: "#000000", enabled: true },
-        { color: "#8200FF", enabled: true },
+        { color: "#3a0080", enabled: true },
         { color: "#EE9B00", enabled: false },
       ],
       speed: 1.5,
