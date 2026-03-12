@@ -1,6 +1,7 @@
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import NeatBackground from "@/components/NeatBackground";
 import SocialToRevenue from "@/components/SocialToRevenue";
+import ContentVault from "@/components/ContentVault";
 
 const Index = () => {
   return (
@@ -100,6 +101,9 @@ const Index = () => {
 
       {/* Social to Revenue Animation */}
       <SocialToRevenue />
+
+      {/* Content Vault */}
+      <ContentVault />
     </main>
   );
 };
