@@ -25,7 +25,7 @@ const NeatBackground = () => {
       waveAmplitude: 8,
       shadows: 5,
       highlights: 8,
-      colorBrightness: 0.3,
+      colorBrightness: 0.1,
       colorSaturation: 7,
       wireframe: false,
       colorBlending: 10,
