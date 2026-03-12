@@ -1,5 +1,6 @@
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import NeatBackground from "@/components/NeatBackground";
+import SocialToRevenue from "@/components/SocialToRevenue";
 
 const Index = () => {
   return (
