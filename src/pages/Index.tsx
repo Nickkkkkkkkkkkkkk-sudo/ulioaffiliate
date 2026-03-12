@@ -97,6 +97,9 @@ const Index = () => {
 
       {/* How It Works Steps */}
       <HowItWorksSteps />
+
+      {/* Social to Revenue Animation */}
+      <SocialToRevenue />
     </main>
   );
 };
