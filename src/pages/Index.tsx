@@ -1,8 +1,19 @@
 import HowItWorksSteps from "@/components/HowItWorksSteps";
+import bgGradient from "@/assets/bg-gradient.png";
 
 const Index = () => {
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
+      {/* Background image */}
+      <div
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url(${bgGradient})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
       {/* Pill-shaped glassmorphism header */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
