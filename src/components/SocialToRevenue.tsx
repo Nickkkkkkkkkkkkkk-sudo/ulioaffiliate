@@ -216,7 +216,7 @@ const SocialToRevenue = () => {
       </h2>
 
       {/* Animation stage */}
-      <div className="relative w-full max-w-5xl mx-auto" style={{ height: 480 }}>
+      <div className="relative w-full max-w-5xl mx-auto" style={{ height: isMobile ? 700 : 480 }}>
         {/* Cards with playing videos */}
         <div className="absolute inset-0 flex items-center justify-center">
           {VIDEOS.map((video, i) => {
