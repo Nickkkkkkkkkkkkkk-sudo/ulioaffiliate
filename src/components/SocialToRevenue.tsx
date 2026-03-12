@@ -188,6 +188,8 @@ const SocialToRevenue = () => {
   const SCATTERED = isMobile ? SCATTERED_MOBILE : SCATTERED_DESKTOP;
   const CARD_W = isMobile ? 90 : 160;
   const CARD_H = isMobile ? 160 : 284;
+  const MOBILE_STACK_SCALE = 1.35;
+  const mobileStackOffset = (CARD_H * MOBILE_STACK_SCALE * MOBILE_STACK_SCALE) / 2 + 14;
 
   return (
     <section
