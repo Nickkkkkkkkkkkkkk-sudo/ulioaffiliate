@@ -101,6 +101,9 @@ const Index = () => {
 
       {/* Social to Revenue Animation */}
       <SocialToRevenue />
+
+      {/* Content Vault */}
+      <ContentVault />
     </main>
   );
 };
