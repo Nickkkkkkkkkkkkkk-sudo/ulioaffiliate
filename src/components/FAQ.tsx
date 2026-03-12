@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ulioLogo from "@/assets/ulio-logo.png";
 
 const FAQS = [
   {
@@ -35,23 +36,14 @@ const FAQ = () => {
         FAQ
       </p>
       <h2
-        className="text-xl sm:text-2xl lg:text-3xl font-bold text-center leading-snug max-w-2xl mb-12"
+        className="text-xl sm:text-2xl lg:text-3xl font-bold text-center leading-snug max-w-2xl mb-12 text-foreground"
         style={{
           fontFamily: "Helvetica, Arial, sans-serif",
           textShadow:
             "0 0 30px rgba(255,255,255,0.15), 0 0 6px rgba(255,255,255,0.3)",
         }}
       >
-        Frequently Asked{" "}
-        <span
-          className="text-primary"
-          style={{
-            textShadow:
-              "0 0 24px hsla(271,76%,53%,0.6), 0 0 48px hsla(271,76%,53%,0.3)",
-          }}
-        >
-          Questions
-        </span>
+        Frequently Asked Questions
       </h2>
 
       <div className="w-full max-w-2xl">
@@ -67,7 +59,7 @@ const FAQ = () => {
                 border: "1px solid hsla(0, 0%, 100%, 0.07)",
               }}
             >
-              <AccordionTrigger className="text-sm sm:text-base font-medium text-foreground/90 hover:no-underline hover:text-primary transition-colors py-4">
+              <AccordionTrigger className="text-sm sm:text-base font-medium text-foreground/90 hover:no-underline hover:text-foreground transition-colors py-4">
                 {faq.q}
               </AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
@@ -77,24 +69,13 @@ const FAQ = () => {
           ))}
         </Accordion>
       </div>
+
       {/* Footer */}
       <footer
         className="w-full max-w-2xl mt-24 pt-8 flex flex-col items-center gap-4"
         style={{ borderTop: "1px solid hsla(0, 0%, 100%, 0.06)" }}
       >
-        <span
-          className="text-sm font-bold tracking-tight text-foreground/70"
-          style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
-        >
-          ulio<span className="text-primary">.ai</span>
-        </span>
-        <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] text-muted-foreground/40 uppercase tracking-widest">
-          <span>Privacy Policy</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Terms of Service</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Affiliate Agreement</span>
-        </div>
+        <img src={ulioLogo} alt="Ulio" className="w-8 h-8 rounded-lg" />
         <p className="text-[11px] text-muted-foreground/30 text-center leading-relaxed max-w-md">
           © {new Date().getFullYear()} Ulio Technologies, Inc. All rights reserved. Ulio, the Ulio logo, and ulio.ai are trademarks of Ulio Technologies, Inc. Commission rates are subject to the terms outlined in the Affiliate Partner Agreement.
         </p>
