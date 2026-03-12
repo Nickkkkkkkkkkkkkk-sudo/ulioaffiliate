@@ -9,14 +9,14 @@ const VIDEOS = [
   { id: 6, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
-// More spread out positions
+// Spread out — no overlapping (cards are ~160x284)
 const SCATTERED = [
-  { x: -280, y: -60, rotate: -14, scale: 0.88 },
-  { x: 240, y: -100, rotate: 10, scale: 0.92 },
-  { x: -120, y: 80, rotate: -7, scale: 0.9 },
-  { x: 300, y: 60, rotate: 16, scale: 0.85 },
-  { x: -300, y: -110, rotate: -20, scale: 0.87 },
-  { x: 140, y: 110, rotate: 12, scale: 0.86 },
+  { x: -340, y: -120, rotate: -12, scale: 0.88 },
+  { x: 0, y: -140, rotate: 6, scale: 0.90 },
+  { x: 340, y: -100, rotate: 14, scale: 0.86 },
+  { x: -260, y: 140, rotate: -8, scale: 0.87 },
+  { x: 80, y: 130, rotate: 10, scale: 0.89 },
+  { x: 360, y: 120, rotate: -5, scale: 0.85 },
 ];
 
 // Stacked like a fanned deck — each card offset so edges are visible
@@ -38,11 +38,11 @@ const FLOAT_OFFSETS = [
   { dx: -12, dy: -7, dr: -1.5 },
 ];
 
-const TARGET_VIEWS = 10_247_000;
+const TARGET_VIEWS = 527_400;
 const COUNTER_DURATION = 3000;
 const REVENUE = "$20,000/mo";
 
-type Phase = "scattered" | "stacking" | "counting" | "formula" | "hold" | "resetting";
+type Phase = "scattered" | "stacking" | "counting" | "formula" | "hold" | "unstacking";
 
 const SocialToRevenue = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -94,11 +94,11 @@ const SocialToRevenue = () => {
   useEffect(() => {
     if (!inView) return;
 
-    const runSequence = () => {
+    const startSequence = () => {
       clearTimeouts();
-      setPhase("scattered");
       setCount(0);
 
+      // Phase: stacking
       addTimeout(() => {
         setPhase("stacking");
 
@@ -119,8 +119,14 @@ const SocialToRevenue = () => {
                 addTimeout(() => {
                   setPhase("hold");
                   addTimeout(() => {
-                    setPhase("resetting");
-                    addTimeout(() => runSequence(), 1200);
+                    // Smooth unstack back to scattered
+                    setPhase("unstacking");
+                    addTimeout(() => {
+                      setPhase("scattered");
+                      setCount(0);
+                      // Float for a bit then restart
+                      addTimeout(() => startSequence(), 3000);
+                    }, 1400);
                   }, 4000);
                 }, 500);
               }, 600);
@@ -131,7 +137,8 @@ const SocialToRevenue = () => {
       }, 3500);
     };
 
-    runSequence();
+    setPhase("scattered");
+    addTimeout(() => startSequence(), 100);
     return clearTimeouts;
   }, [inView, clearTimeouts, addTimeout]);
 
@@ -141,10 +148,10 @@ const SocialToRevenue = () => {
     return n.toString();
   };
 
-  const isScattered = phase === "scattered" || phase === "resetting";
+  const isScattered = phase === "scattered" || phase === "unstacking";
   const showCounter = phase === "counting" || phase === "formula" || phase === "hold";
   const showFormula = phase === "formula" || phase === "hold";
-  const isResetting = phase === "resetting";
+  const isUnstacking = phase === "unstacking";
 
   const CARD_W = 160;
   const CARD_H = 284;
@@ -202,10 +209,10 @@ const SocialToRevenue = () => {
                   width: CARD_W,
                   height: CARD_H,
                   transform: `translate(${x}px, ${y}px) rotate(${rotate}deg) scale(${scale})`,
-                  transition: isScattered
+                  transition: isScattered && !isUnstacking
                     ? "none"
-                    : isResetting
-                    ? "transform 1s cubic-bezier(0.34, 1.56, 0.64, 1)"
+                    : isUnstacking
+                    ? "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)"
                     : "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
                   zIndex: i + 1,
                   background: `linear-gradient(135deg, hsl(${video.hue} 60% 15%), hsl(${video.hue} 80% 8%))`,
