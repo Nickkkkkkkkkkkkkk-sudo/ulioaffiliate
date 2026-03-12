@@ -321,7 +321,7 @@ const SocialToRevenue = () => {
             className="absolute"
             style={{
               ...(isMobile
-                ? { top: `calc(50% + ${CARD_H / 2 + 30}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
+                ? { top: `calc(50% + ${(CARD_H * 1.35) / 2 + 20}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
                 : { left: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showFormula ? 'translateX(0)' : 'translateX(-20px)' }
               ),
               opacity: showFormula ? 1 : 0,
