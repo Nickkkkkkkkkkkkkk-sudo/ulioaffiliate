@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const VIDEOS = [
   { id: 1, hue: 271, src: "/videos/clip-2.mp4" },
