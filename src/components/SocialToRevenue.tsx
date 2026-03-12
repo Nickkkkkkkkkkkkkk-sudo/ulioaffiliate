@@ -1,44 +1,46 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const VIDEOS = [
-  { id: 1, hue: 271, src: "/videos/clip-1.mp4" },
-  { id: 2, hue: 290, src: "/videos/clip-2.mp4" },
-  { id: 3, hue: 260, src: "/videos/clip-3.mp4" },
-  { id: 4, hue: 280, src: "/videos/clip-4.mp4" },
-  { id: 5, hue: 265, src: "/videos/clip-5.mp4" },
-  { id: 6, hue: 275, src: "/videos/clip-6.mp4" },
+  { id: 1, hue: 271, src: "/videos/clip-2.mp4" },
+  { id: 2, hue: 290, src: "/videos/clip-3.mp4" },
+  { id: 3, hue: 260, src: "/videos/clip-4.mp4" },
+  { id: 4, hue: 280, src: "/videos/clip-5.mp4" },
+  { id: 5, hue: 265, src: "/videos/clip-6.mp4" },
+  { id: 6, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
+// More spread out positions
 const SCATTERED = [
-  { x: -180, y: -40, rotate: -12, scale: 0.85 },
-  { x: 140, y: -80, rotate: 8, scale: 0.9 },
-  { x: -60, y: 60, rotate: -5, scale: 0.88 },
-  { x: 200, y: 40, rotate: 15, scale: 0.82 },
-  { x: -200, y: -90, rotate: -18, scale: 0.86 },
-  { x: 80, y: 90, rotate: 10, scale: 0.84 },
+  { x: -280, y: -60, rotate: -14, scale: 0.88 },
+  { x: 240, y: -100, rotate: 10, scale: 0.92 },
+  { x: -120, y: 80, rotate: -7, scale: 0.9 },
+  { x: 300, y: 60, rotate: 16, scale: 0.85 },
+  { x: -300, y: -110, rotate: -20, scale: 0.87 },
+  { x: 140, y: 110, rotate: 12, scale: 0.86 },
 ];
 
+// Stacked like a fanned deck — each card offset so edges are visible
 const STACKED = [
-  { x: 0, y: 10, rotate: -2, scale: 0.92 },
-  { x: 0, y: 8, rotate: 1.5, scale: 0.94 },
-  { x: 0, y: 6, rotate: -1, scale: 0.96 },
-  { x: 0, y: 4, rotate: 0.8, scale: 0.97 },
-  { x: 0, y: 2, rotate: -0.5, scale: 0.99 },
+  { x: -10, y: 20, rotate: -4, scale: 0.90 },
+  { x: -6, y: 16, rotate: -2.5, scale: 0.92 },
+  { x: -3, y: 12, rotate: -1.2, scale: 0.94 },
+  { x: 0, y: 8, rotate: 0.5, scale: 0.96 },
+  { x: 3, y: 4, rotate: 1.5, scale: 0.98 },
   { x: 0, y: 0, rotate: 0, scale: 1 },
 ];
 
 const FLOAT_OFFSETS = [
-  { dx: 8, dy: -6, dr: 2 },
-  { dx: -6, dy: 8, dr: -3 },
-  { dx: 10, dy: 5, dr: 1.5 },
-  { dx: -8, dy: -10, dr: -2 },
-  { dx: 5, dy: 7, dr: 3 },
-  { dx: -10, dy: -5, dr: -1 },
+  { dx: 10, dy: -8, dr: 2.5 },
+  { dx: -8, dy: 10, dr: -3.5 },
+  { dx: 12, dy: 6, dr: 2 },
+  { dx: -10, dy: -12, dr: -2.5 },
+  { dx: 7, dy: 9, dr: 3.5 },
+  { dx: -12, dy: -7, dr: -1.5 },
 ];
 
-const TARGET_VIEWS = 527_400;
+const TARGET_VIEWS = 10_247_000;
 const COUNTER_DURATION = 3000;
-const REVENUE = "$12,500/mo";
+const REVENUE = "$20,000/mo";
 
 type Phase = "scattered" | "stacking" | "counting" | "formula" | "hold" | "resetting";
 
@@ -88,7 +90,7 @@ const SocialToRevenue = () => {
     return id;
   }, []);
 
-  // Animation sequence — slower timings
+  // Animation sequence
   useEffect(() => {
     if (!inView) return;
 
@@ -97,11 +99,9 @@ const SocialToRevenue = () => {
       setPhase("scattered");
       setCount(0);
 
-      // Scattered float for 3.5s
       addTimeout(() => {
         setPhase("stacking");
 
-        // After stack (1.2s), start counting
         addTimeout(() => {
           setPhase("counting");
           const startTime = Date.now();
@@ -136,6 +136,7 @@ const SocialToRevenue = () => {
   }, [inView, clearTimeouts, addTimeout]);
 
   const formatViews = (n: number) => {
+    if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
     if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
     return n.toString();
   };
@@ -144,6 +145,9 @@ const SocialToRevenue = () => {
   const showCounter = phase === "counting" || phase === "formula" || phase === "hold";
   const showFormula = phase === "formula" || phase === "hold";
   const isResetting = phase === "resetting";
+
+  const CARD_W = 160;
+  const CARD_H = 284;
 
   return (
     <section
@@ -172,7 +176,7 @@ const SocialToRevenue = () => {
       </h2>
 
       {/* Animation stage */}
-      <div className="relative w-full max-w-3xl mx-auto" style={{ height: 420 }}>
+      <div className="relative w-full max-w-5xl mx-auto" style={{ height: 480 }}>
         {/* Cards with playing videos */}
         <div className="absolute inset-0 flex items-center justify-center">
           {VIDEOS.map((video, i) => {
@@ -195,8 +199,8 @@ const SocialToRevenue = () => {
                 key={video.id}
                 className="absolute rounded-xl overflow-hidden"
                 style={{
-                  width: 120,
-                  height: 213,
+                  width: CARD_W,
+                  height: CARD_H,
                   transform: `translate(${x}px, ${y}px) rotate(${rotate}deg) scale(${scale})`,
                   transition: isScattered
                     ? "none"
@@ -233,16 +237,18 @@ const SocialToRevenue = () => {
           })}
         </div>
 
-        {/* Counter overlay */}
+        {/* Counter + Formula — positioned to the LEFT and RIGHT of the stack */}
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           style={{ zIndex: 10 }}
         >
+          {/* Views counter — left side */}
           <div
-            className="flex items-center gap-4 sm:gap-6"
+            className="absolute"
             style={{
+              right: `calc(50% + ${CARD_W / 2 + 40}px)`,
               opacity: showCounter ? 1 : 0,
-              transform: showCounter ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
+              transform: showCounter ? "translateX(0) scale(1)" : "translateX(20px) scale(0.9)",
               transition: "all 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
@@ -262,39 +268,49 @@ const SocialToRevenue = () => {
                 {formatViews(count)}
               </span>
             </div>
+          </div>
 
-            <span
-              className="text-3xl sm:text-4xl font-bold text-primary"
-              style={{
-                opacity: showFormula ? 1 : 0,
-                transform: showFormula ? "translateX(0)" : "translateX(-20px)",
-                transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s",
-                textShadow: "0 0 20px hsla(271,76%,53%,0.6)",
-              }}
-            >
-              =
-            </span>
-
-            <div
-              className="glass-panel px-5 py-3 sm:px-6 sm:py-4 flex flex-col items-center gap-1"
-              style={{
-                opacity: showFormula ? 1 : 0,
-                transform: showFormula ? "translateX(0) scale(1)" : "translateX(-30px) scale(0.9)",
-                transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
-                boxShadow: showFormula
-                  ? "0 0 60px hsla(271, 76%, 53%, 0.3), 0 0 120px hsla(271, 76%, 53%, 0.1), 0 8px 32px rgba(0,0,0,0.4)"
-                  : "0 8px 32px rgba(0,0,0,0.4)",
-              }}
-            >
-              <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
-                Recurring
-              </span>
+          {/* Equals sign — center-right */}
+          <div
+            className="absolute"
+            style={{
+              left: `calc(50% + ${CARD_W / 2 + 40}px)`,
+              opacity: showFormula ? 1 : 0,
+              transform: showFormula ? "translateX(0)" : "translateX(-20px)",
+              transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s",
+            }}
+          >
+            <div className="flex items-center gap-4">
               <span
-                className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
-                style={{ textShadow: "0 0 30px rgba(255,255,255,0.3), 0 0 8px rgba(255,255,255,0.5)" }}
+                className="text-3xl sm:text-4xl font-bold text-primary"
+                style={{
+                  textShadow: "0 0 20px hsla(271,76%,53%,0.6)",
+                }}
               >
-                {REVENUE}
+                =
               </span>
+
+              <div
+                className="glass-panel px-5 py-3 sm:px-6 sm:py-4 flex flex-col items-center gap-1"
+                style={{
+                  opacity: showFormula ? 1 : 0,
+                  transform: showFormula ? "translateX(0) scale(1)" : "translateX(-30px) scale(0.9)",
+                  transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
+                  boxShadow: showFormula
+                    ? "0 0 60px hsla(271, 76%, 53%, 0.3), 0 0 120px hsla(271, 76%, 53%, 0.1), 0 8px 32px rgba(0,0,0,0.4)"
+                    : "0 8px 32px rgba(0,0,0,0.4)",
+                }}
+              >
+                <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+                  Recurring
+                </span>
+                <span
+                  className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
+                  style={{ textShadow: "0 0 30px rgba(255,255,255,0.3), 0 0 8px rgba(255,255,255,0.5)" }}
+                >
+                  {REVENUE}
+                </span>
+              </div>
             </div>
           </div>
         </div>
