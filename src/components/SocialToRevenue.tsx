@@ -207,10 +207,10 @@ const SocialToRevenue = () => {
                   width: CARD_W,
                   height: CARD_H,
                   transform: `translate(${x}px, ${y}px) rotate(${rotate}deg) scale(${scale})`,
-                  transition: isScattered
+                  transition: isScattered && !isUnstacking
                     ? "none"
-                    : isResetting
-                    ? "transform 1s cubic-bezier(0.34, 1.56, 0.64, 1)"
+                    : isUnstacking
+                    ? "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)"
                     : "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
                   zIndex: i + 1,
                   background: `linear-gradient(135deg, hsl(${video.hue} 60% 15%), hsl(${video.hue} 80% 8%))`,
