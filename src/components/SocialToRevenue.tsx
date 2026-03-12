@@ -14,8 +14,8 @@ const VIDEOS = [
   { id: 10, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
-// Spread out — no overlapping (cards are ~160x284)
-const SCATTERED = [
+// Desktop: spread out horizontally
+const SCATTERED_DESKTOP = [
   { x: -440, y: -140, rotate: -12, scale: 0.86 },
   { x: -180, y: -160, rotate: 6, scale: 0.88 },
   { x: 120, y: -150, rotate: -8, scale: 0.87 },
@@ -26,6 +26,20 @@ const SCATTERED = [
   { x: 460, y: 110, rotate: 8, scale: 0.85 },
   { x: -260, y: -10, rotate: -3, scale: 0.89 },
   { x: 340, y: -10, rotate: 4, scale: 0.87 },
+];
+
+// Mobile: vertical layout, 2 columns fitting within ~360px wide, ~600px tall
+const SCATTERED_MOBILE = [
+  { x: -80, y: -250, rotate: -10, scale: 0.82 },
+  { x: 80, y: -240, rotate: 8, scale: 0.84 },
+  { x: -90, y: -110, rotate: 5, scale: 0.83 },
+  { x: 85, y: -100, rotate: -7, scale: 0.82 },
+  { x: -75, y: 20, rotate: -4, scale: 0.84 },
+  { x: 90, y: 30, rotate: 6, scale: 0.83 },
+  { x: -85, y: 150, rotate: 8, scale: 0.82 },
+  { x: 80, y: 160, rotate: -5, scale: 0.84 },
+  { x: -70, y: 280, rotate: -6, scale: 0.83 },
+  { x: 85, y: 290, rotate: 4, scale: 0.82 },
 ];
 
 // Stacked like a fanned deck — each card offset so edges are visible
