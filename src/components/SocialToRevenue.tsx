@@ -312,17 +312,19 @@ const SocialToRevenue = () => {
             </div>
           </div>
 
-          {/* Equals sign — center-right */}
+          {/* Equals + Revenue — right on desktop, bottom on mobile */}
           <div
             className="absolute"
             style={{
-              left: `calc(50% + ${CARD_W / 2 + 40}px)`,
+              ...(isMobile
+                ? { top: `calc(50% + ${CARD_H / 2 + 30}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
+                : { left: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showFormula ? 'translateX(0)' : 'translateX(-20px)' }
+              ),
               opacity: showFormula ? 1 : 0,
-              transform: showFormula ? "translateX(0)" : "translateX(-20px)",
               transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s",
             }}
           >
-            <div className="flex items-center gap-4">
+            <div className={`flex items-center gap-4 ${isMobile ? 'flex-col' : ''}`}>
               <span
                 className="text-3xl sm:text-4xl font-bold text-primary"
                 style={{
@@ -336,7 +338,7 @@ const SocialToRevenue = () => {
                 className="glass-panel px-5 py-3 sm:px-6 sm:py-4 flex flex-col items-center gap-1"
                 style={{
                   opacity: showFormula ? 1 : 0,
-                  transform: showFormula ? "translateX(0) scale(1)" : "translateX(-30px) scale(0.9)",
+                  transform: showFormula ? "scale(1)" : "scale(0.9)",
                   transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
                   boxShadow: showFormula
                     ? "0 0 60px hsla(271, 76%, 53%, 0.3), 0 0 120px hsla(271, 76%, 53%, 0.1), 0 8px 32px rgba(0,0,0,0.4)"
