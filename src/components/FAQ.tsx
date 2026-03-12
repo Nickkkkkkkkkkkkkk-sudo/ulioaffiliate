@@ -12,7 +12,7 @@ const FAQS = [
   },
   {
     q: "I'm not a tech expert. Can I still promote this?",
-    a: "Absolutely. You don't need to know how to code or build AI. Our Affiliate Content Library gives you raw screen recordings of the product in action—showing the AI being built and booking real appointments. Just add your own \"touch\" (voiceover, reaction, or captions), share your link, and let the software sell itself.",
+    a: "Absolutely. You don't need to know how to code or build AI. Our Affiliate Content Library gives you raw screen recordings of the product in action, showing the AI being built and booking real appointments. Just add your own touch (voiceover, reaction, or captions), share your link, and let the software sell itself.",
   },
   {
     q: "When and how do I get paid?",
@@ -20,11 +20,11 @@ const FAQS = [
   },
   {
     q: "Can I use your videos for my TikTok/Reels/X posts?",
-    a: "Yes! We encourage it. In your partner portal, you'll find a \"Creator Kit\" with raw b-roll and screen recordings of the AI receptionist interface. We only ask that you \"remix\" them—add your own unique voice or face-cam—to ensure the social media algorithms push your content to the widest possible audience.",
+    a: "Yes! We encourage it. In your partner portal, you'll find a Creator Kit with raw b-roll and screen recordings of the AI receptionist interface. We only ask that you remix them and add your own unique voice or face-cam to ensure the social media algorithms push your content to the widest possible audience.",
   },
   {
     q: "Why is ulio.ai easier to sell than other AI tools?",
-    a: "Most AI tools are \"nice-to-haves,\" but ulio.ai solves a painful, expensive problem: missed calls. Every missed call is a missed customer. When you show a business owner that they can have a 24/7 receptionist for a fraction of the cost of a human staff member, the software practically sells itself.",
+    a: "Most AI tools are nice-to-haves, but ulio.ai solves a painful, expensive problem: missed calls. Every missed call is a missed customer. When you show a business owner that they can have a 24/7 receptionist for a fraction of the cost of a human staff member, the software practically sells itself.",
   },
 ];
 
