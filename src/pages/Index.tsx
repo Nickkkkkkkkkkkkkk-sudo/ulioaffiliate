@@ -1,32 +1,6 @@
 const Index = () => {
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
-      {/* Animated ocean gradient background */}
-      <div className="fixed inset-0 z-0">
-        <div
-          className="absolute inset-0 animate-gradient-move"
-          style={{
-            background:
-              "radial-gradient(ellipse at 20% 80%, hsla(271,60%,15%,0.8) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, hsla(280,50%,12%,0.7) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, hsla(265,40%,8%,1) 0%, hsla(271,30%,4%,1) 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 animate-gradient-move-reverse"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 70%, hsla(275,50%,18%,0.5) 0%, transparent 45%), radial-gradient(ellipse at 30% 30%, hsla(260,45%,14%,0.4) 0%, transparent 45%)",
-          }}
-        />
-        {/* Grain overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            opacity: 0.04,
-            mixBlendMode: "overlay",
-          }}
-        />
-      </div>
 
       {/* Pill-shaped glassmorphism header */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
