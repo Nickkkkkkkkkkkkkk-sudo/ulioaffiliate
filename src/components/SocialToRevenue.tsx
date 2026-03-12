@@ -9,14 +9,14 @@ const VIDEOS = [
   { id: 6, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
-// More spread out positions
+// Spread out — no overlapping (cards are ~160x284)
 const SCATTERED = [
-  { x: -280, y: -60, rotate: -14, scale: 0.88 },
-  { x: 240, y: -100, rotate: 10, scale: 0.92 },
-  { x: -120, y: 80, rotate: -7, scale: 0.9 },
-  { x: 300, y: 60, rotate: 16, scale: 0.85 },
-  { x: -300, y: -110, rotate: -20, scale: 0.87 },
-  { x: 140, y: 110, rotate: 12, scale: 0.86 },
+  { x: -340, y: -120, rotate: -12, scale: 0.88 },
+  { x: 0, y: -140, rotate: 6, scale: 0.90 },
+  { x: 340, y: -100, rotate: 14, scale: 0.86 },
+  { x: -260, y: 140, rotate: -8, scale: 0.87 },
+  { x: 80, y: 130, rotate: 10, scale: 0.89 },
+  { x: 360, y: 120, rotate: -5, scale: 0.85 },
 ];
 
 // Stacked like a fanned deck — each card offset so edges are visible
