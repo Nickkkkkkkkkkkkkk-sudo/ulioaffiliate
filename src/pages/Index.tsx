@@ -1,3 +1,5 @@
+import HowItWorksSteps from "@/components/HowItWorksSteps";
+
 const Index = () => {
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
