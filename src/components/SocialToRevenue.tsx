@@ -42,7 +42,7 @@ const TARGET_VIEWS = 527_400;
 const COUNTER_DURATION = 3000;
 const REVENUE = "$20,000/mo";
 
-type Phase = "scattered" | "stacking" | "counting" | "formula" | "hold" | "resetting";
+type Phase = "scattered" | "stacking" | "counting" | "formula" | "hold" | "unstacking";
 
 const SocialToRevenue = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
