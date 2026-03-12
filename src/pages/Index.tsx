@@ -1,6 +1,33 @@
 const Index = () => {
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
+      {/* Animated ocean gradient background */}
+      <div className="fixed inset-0 z-0">
+        <div
+          className="absolute inset-0 animate-gradient-move"
+          style={{
+            background:
+              "radial-gradient(ellipse at 20% 80%, hsla(271,60%,15%,0.8) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, hsla(280,50%,12%,0.7) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, hsla(265,40%,8%,1) 0%, hsla(271,30%,4%,1) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 animate-gradient-move-reverse"
+          style={{
+            background:
+              "radial-gradient(ellipse at 70% 70%, hsla(275,50%,18%,0.5) 0%, transparent 45%), radial-gradient(ellipse at 30% 30%, hsla(260,45%,14%,0.4) 0%, transparent 45%)",
+          }}
+        />
+        {/* Grain overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            opacity: 0.04,
+            mixBlendMode: "overlay",
+          }}
+        />
+      </div>
+
       {/* Pill-shaped glassmorphism header */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
         <nav
@@ -26,14 +53,11 @@ const Index = () => {
           <a href="#about" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             About
           </a>
-          <a href="#video" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-            Watch
-          </a>
         </nav>
       </header>
 
-      {/* Hero section */}
-      <section className="flex flex-col items-center justify-center min-h-screen px-6 pt-20">
+      {/* Hero section — pushed to top */}
+      <section className="relative z-10 flex flex-col items-center pt-24 pb-8 px-6">
         <p className="text-xs font-medium uppercase tracking-[0.25em] text-primary/60 mb-4">
           Affiliate Program
         </p>
@@ -71,8 +95,8 @@ const Index = () => {
         </p>
       </section>
 
-      {/* Video section */}
-      <section id="video" className="flex justify-center px-6 -mt-20 pb-24">
+      {/* Video placeholder */}
+      <section className="relative z-10 flex justify-center px-6 pb-24">
         <div
           className="w-full max-w-2xl rounded-2xl overflow-hidden"
           style={{
@@ -84,21 +108,16 @@ const Index = () => {
               "0 8px 32px rgba(0,0,0,0.4), inset 0 0 4px rgba(255,255,255,0.05)",
           }}
         >
-          <div className="aspect-video w-full">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="ulio.ai overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ border: "none" }}
-            />
+          <div className="aspect-video w-full flex items-center justify-center">
+            <span className="text-xs text-muted-foreground/40 uppercase tracking-widest">
+              Video coming soon
+            </span>
           </div>
         </div>
       </section>
 
       {/* About section */}
-      <section id="about" className="flex justify-center px-6 pb-32">
+      <section id="about" className="relative z-10 flex justify-center px-6 pb-32">
         <div
           className="w-full max-w-2xl rounded-2xl p-8"
           style={{
@@ -132,9 +151,7 @@ const Index = () => {
               <div key={item.label} className="text-center">
                 <p
                   className="text-2xl font-bold text-primary"
-                  style={{
-                    textShadow: "0 0 16px hsla(271,76%,53%,0.4)",
-                  }}
+                  style={{ textShadow: "0 0 16px hsla(271,76%,53%,0.4)" }}
                 >
                   {item.value}
                 </p>
