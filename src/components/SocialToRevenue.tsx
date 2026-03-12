@@ -6,7 +6,11 @@ const VIDEOS = [
   { id: 3, hue: 260, src: "/videos/clip-4.mp4" },
   { id: 4, hue: 280, src: "/videos/clip-5.mp4" },
   { id: 5, hue: 265, src: "/videos/clip-6.mp4" },
-  { id: 6, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
+  { id: 6, hue: 255, src: "/videos/clip-7.mp4" },
+  { id: 7, hue: 285, src: "/videos/clip-8.mp4" },
+  { id: 8, hue: 270, src: "/videos/clip-9.mp4" },
+  { id: 9, hue: 278, src: "/videos/clip-10.mp4" },
+  { id: 10, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
 // Spread out — no overlapping (cards are ~160x284)
