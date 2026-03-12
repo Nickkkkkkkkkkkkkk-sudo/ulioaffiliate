@@ -282,13 +282,15 @@ const SocialToRevenue = () => {
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           style={{ zIndex: 10 }}
         >
-          {/* Views counter — left side */}
+          {/* Views counter — left on desktop, top on mobile */}
           <div
             className="absolute"
             style={{
-              right: `calc(50% + ${CARD_W / 2 + 40}px)`,
+              ...(isMobile
+                ? { bottom: `calc(50% + ${CARD_H / 2 + 30}px)`, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(20px) scale(0.9)' }
+                : { right: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showCounter ? 'translateX(0) scale(1)' : 'translateX(20px) scale(0.9)' }
+              ),
               opacity: showCounter ? 1 : 0,
-              transform: showCounter ? "translateX(0) scale(1)" : "translateX(20px) scale(0.9)",
               transition: "all 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
