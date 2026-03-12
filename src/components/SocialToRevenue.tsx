@@ -94,11 +94,11 @@ const SocialToRevenue = () => {
   useEffect(() => {
     if (!inView) return;
 
-    const runSequence = () => {
+    const startSequence = () => {
       clearTimeouts();
-      setPhase("scattered");
       setCount(0);
 
+      // Phase: stacking
       addTimeout(() => {
         setPhase("stacking");
 
@@ -119,12 +119,13 @@ const SocialToRevenue = () => {
                 addTimeout(() => {
                   setPhase("hold");
                   addTimeout(() => {
+                    // Smooth unstack back to scattered
                     setPhase("unstacking");
                     addTimeout(() => {
                       setPhase("scattered");
                       setCount(0);
-                      // Wait in scattered state then restart
-                      addTimeout(() => runSequence(), 3500);
+                      // Float for a bit then restart
+                      addTimeout(() => startSequence(), 3000);
                     }, 1400);
                   }, 4000);
                 }, 500);
@@ -136,7 +137,8 @@ const SocialToRevenue = () => {
       }, 3500);
     };
 
-    runSequence();
+    setPhase("scattered");
+    addTimeout(() => startSequence(), 100);
     return clearTimeouts;
   }, [inView, clearTimeouts, addTimeout]);
 
