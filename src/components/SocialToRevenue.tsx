@@ -291,7 +291,7 @@ const SocialToRevenue = () => {
             className="absolute"
             style={{
               ...(isMobile
-                ? { bottom: `calc(50% + ${(CARD_H * 1.35) / 2 + 20}px)`, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(20px) scale(0.9)' }
+                ? { top: 40, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(-20px) scale(0.9)' }
                 : { right: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showCounter ? 'translateX(0) scale(1)' : 'translateX(20px) scale(0.9)' }
               ),
               opacity: showCounter ? 1 : 0,
@@ -321,7 +321,7 @@ const SocialToRevenue = () => {
             className="absolute"
             style={{
               ...(isMobile
-                ? { top: `calc(50% + ${(CARD_H * 1.35) / 2 + 20}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
+                ? { bottom: 40, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(20px)' }
                 : { left: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showFormula ? 'translateX(0)' : 'translateX(-20px)' }
               ),
               opacity: showFormula ? 1 : 0,
