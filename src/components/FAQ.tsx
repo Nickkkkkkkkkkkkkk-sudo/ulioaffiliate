@@ -100,6 +100,7 @@ const FAQ = () => {
         </p>
       </footer>
     </section>
+  );
 };
 
 export default FAQ;
