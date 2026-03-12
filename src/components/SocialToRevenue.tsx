@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const VIDEOS = [
   { id: 1, hue: 271, src: "/videos/clip-2.mp4" },
@@ -169,8 +170,10 @@ const SocialToRevenue = () => {
   const showFormula = phase === "formula" || phase === "hold";
   const isUnstacking = phase === "unstacking";
 
-  const CARD_W = 160;
-  const CARD_H = 284;
+  const isMobile = useIsMobile();
+  const CARD_W = isMobile ? 90 : 160;
+  const CARD_H = isMobile ? 160 : 284;
+  const SCALE_FACTOR = isMobile ? 0.55 : 1;
 
   return (
     <section
@@ -212,8 +215,9 @@ const SocialToRevenue = () => {
             const floatR = isScattered ? Math.sin(floatTime * 0.35 + i * 1.5) * float.dr : 0;
 
             const pos = isScattered ? scattered : stacked;
-            const x = pos.x + floatX;
-            const y = pos.y + floatY;
+            // Scale down scattered positions on mobile
+            const x = isScattered ? (pos.x * SCALE_FACTOR) + floatX : pos.x + floatX;
+            const y = isScattered ? (pos.y * SCALE_FACTOR) + floatY : pos.y + floatY;
             const rotate = pos.rotate + floatR;
             const scale = pos.scale;
 
