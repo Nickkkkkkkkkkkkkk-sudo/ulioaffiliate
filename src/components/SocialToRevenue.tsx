@@ -119,8 +119,13 @@ const SocialToRevenue = () => {
                 addTimeout(() => {
                   setPhase("hold");
                   addTimeout(() => {
-                    setPhase("resetting");
-                    addTimeout(() => runSequence(), 1200);
+                    setPhase("unstacking");
+                    addTimeout(() => {
+                      setPhase("scattered");
+                      setCount(0);
+                      // Wait in scattered state then restart
+                      addTimeout(() => runSequence(), 3500);
+                    }, 1400);
                   }, 4000);
                 }, 500);
               }, 600);
