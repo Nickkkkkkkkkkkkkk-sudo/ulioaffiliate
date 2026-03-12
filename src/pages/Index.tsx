@@ -64,8 +64,8 @@ const Index = () => {
             Paying Affiliates
           </span>
         </h1>
-        <p className="mt-4 text-sm text-muted-foreground max-w-md text-center leading-relaxed">
-          Share ulio.ai with your audience and earn on every conversion. It's that simple.
+        <p className="mt-4 text-sm text-muted-foreground max-w-lg text-center leading-relaxed">
+          Stop promoting over-saturated tools. Show your audience how ulio.ai saves businesses from missed calls and earn 17% recurring commission for every sign-up.
         </p>
       </section>
 
