@@ -105,6 +105,9 @@ const Index = () => {
 
       {/* Content Vault */}
       <ContentVault />
+
+      {/* FAQ */}
+      <FAQ />
     </main>
   );
 };
