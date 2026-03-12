@@ -146,10 +146,10 @@ const SocialToRevenue = () => {
     return n.toString();
   };
 
-  const isScattered = phase === "scattered" || phase === "resetting";
+  const isScattered = phase === "scattered" || phase === "unstacking";
   const showCounter = phase === "counting" || phase === "formula" || phase === "hold";
   const showFormula = phase === "formula" || phase === "hold";
-  const isResetting = phase === "resetting";
+  const isUnstacking = phase === "unstacking";
 
   const CARD_W = 160;
   const CARD_H = 284;
