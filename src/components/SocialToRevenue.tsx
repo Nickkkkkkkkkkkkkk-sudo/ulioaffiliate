@@ -14,8 +14,8 @@ const VIDEOS = [
   { id: 10, hue: 275, src: "/videos/clip-1.mp4" }, // top of stack
 ];
 
-// Spread out — no overlapping (cards are ~160x284)
-const SCATTERED = [
+// Desktop: spread out horizontally
+const SCATTERED_DESKTOP = [
   { x: -440, y: -140, rotate: -12, scale: 0.86 },
   { x: -180, y: -160, rotate: 6, scale: 0.88 },
   { x: 120, y: -150, rotate: -8, scale: 0.87 },
@@ -26,6 +26,20 @@ const SCATTERED = [
   { x: 460, y: 110, rotate: 8, scale: 0.85 },
   { x: -260, y: -10, rotate: -3, scale: 0.89 },
   { x: 340, y: -10, rotate: 4, scale: 0.87 },
+];
+
+// Mobile: vertical layout, 2 columns fitting within ~360px wide, ~600px tall
+const SCATTERED_MOBILE = [
+  { x: -80, y: -250, rotate: -10, scale: 0.82 },
+  { x: 80, y: -240, rotate: 8, scale: 0.84 },
+  { x: -90, y: -110, rotate: 5, scale: 0.83 },
+  { x: 85, y: -100, rotate: -7, scale: 0.82 },
+  { x: -75, y: 20, rotate: -4, scale: 0.84 },
+  { x: 90, y: 30, rotate: 6, scale: 0.83 },
+  { x: -85, y: 150, rotate: 8, scale: 0.82 },
+  { x: 80, y: 160, rotate: -5, scale: 0.84 },
+  { x: -70, y: 280, rotate: -6, scale: 0.83 },
+  { x: 85, y: 290, rotate: 4, scale: 0.82 },
 ];
 
 // Stacked like a fanned deck — each card offset so edges are visible
@@ -171,9 +185,9 @@ const SocialToRevenue = () => {
   const isUnstacking = phase === "unstacking";
 
   const isMobile = useIsMobile();
+  const SCATTERED = isMobile ? SCATTERED_MOBILE : SCATTERED_DESKTOP;
   const CARD_W = isMobile ? 90 : 160;
   const CARD_H = isMobile ? 160 : 284;
-  const SCALE_FACTOR = isMobile ? 0.55 : 1;
 
   return (
     <section
@@ -202,7 +216,7 @@ const SocialToRevenue = () => {
       </h2>
 
       {/* Animation stage */}
-      <div className="relative w-full max-w-5xl mx-auto" style={{ height: 480 }}>
+      <div className="relative w-full max-w-5xl mx-auto" style={{ height: isMobile ? 700 : 480 }}>
         {/* Cards with playing videos */}
         <div className="absolute inset-0 flex items-center justify-center">
           {VIDEOS.map((video, i) => {
@@ -215,9 +229,8 @@ const SocialToRevenue = () => {
             const floatR = isScattered ? Math.sin(floatTime * 0.35 + i * 1.5) * float.dr : 0;
 
             const pos = isScattered ? scattered : stacked;
-            // Scale down scattered positions on mobile
-            const x = isScattered ? (pos.x * SCALE_FACTOR) + floatX : pos.x + floatX;
-            const y = isScattered ? (pos.y * SCALE_FACTOR) + floatY : pos.y + floatY;
+            const x = pos.x + floatX;
+            const y = pos.y + floatY;
             const rotate = pos.rotate + floatR;
             const scale = pos.scale;
 
@@ -269,13 +282,15 @@ const SocialToRevenue = () => {
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           style={{ zIndex: 10 }}
         >
-          {/* Views counter — left side */}
+          {/* Views counter — left on desktop, top on mobile */}
           <div
             className="absolute"
             style={{
-              right: `calc(50% + ${CARD_W / 2 + 40}px)`,
+              ...(isMobile
+                ? { bottom: `calc(50% + ${CARD_H / 2 + 30}px)`, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(20px) scale(0.9)' }
+                : { right: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showCounter ? 'translateX(0) scale(1)' : 'translateX(20px) scale(0.9)' }
+              ),
               opacity: showCounter ? 1 : 0,
-              transform: showCounter ? "translateX(0) scale(1)" : "translateX(20px) scale(0.9)",
               transition: "all 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
@@ -297,17 +312,19 @@ const SocialToRevenue = () => {
             </div>
           </div>
 
-          {/* Equals sign — center-right */}
+          {/* Equals + Revenue — right on desktop, bottom on mobile */}
           <div
             className="absolute"
             style={{
-              left: `calc(50% + ${CARD_W / 2 + 40}px)`,
+              ...(isMobile
+                ? { top: `calc(50% + ${CARD_H / 2 + 30}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
+                : { left: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showFormula ? 'translateX(0)' : 'translateX(-20px)' }
+              ),
               opacity: showFormula ? 1 : 0,
-              transform: showFormula ? "translateX(0)" : "translateX(-20px)",
               transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s",
             }}
           >
-            <div className="flex items-center gap-4">
+            <div className={`flex items-center gap-4 ${isMobile ? 'flex-col' : ''}`}>
               <span
                 className="text-3xl sm:text-4xl font-bold text-primary"
                 style={{
@@ -321,7 +338,7 @@ const SocialToRevenue = () => {
                 className="glass-panel px-5 py-3 sm:px-6 sm:py-4 flex flex-col items-center gap-1"
                 style={{
                   opacity: showFormula ? 1 : 0,
-                  transform: showFormula ? "translateX(0) scale(1)" : "translateX(-30px) scale(0.9)",
+                  transform: showFormula ? "scale(1)" : "scale(0.9)",
                   transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
                   boxShadow: showFormula
                     ? "0 0 60px hsla(271, 76%, 53%, 0.3), 0 0 120px hsla(271, 76%, 53%, 0.1), 0 8px 32px rgba(0,0,0,0.4)"
