@@ -185,9 +185,9 @@ const SocialToRevenue = () => {
   const isUnstacking = phase === "unstacking";
 
   const isMobile = useIsMobile();
+  const SCATTERED = isMobile ? SCATTERED_MOBILE : SCATTERED_DESKTOP;
   const CARD_W = isMobile ? 90 : 160;
   const CARD_H = isMobile ? 160 : 284;
-  const SCALE_FACTOR = isMobile ? 0.55 : 1;
 
   return (
     <section
