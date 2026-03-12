@@ -44,11 +44,14 @@ const NeatBackground = () => {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 z-0 w-full h-full"
-      style={{ width: "100%", height: "100%" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 z-0 w-full h-full"
+        style={{ width: "100%", height: "100%" }}
+      />
+      <style>{`a[href*="neat.firecms.co"]{display:none!important}`}</style>
+    </>
   );
 };
 
