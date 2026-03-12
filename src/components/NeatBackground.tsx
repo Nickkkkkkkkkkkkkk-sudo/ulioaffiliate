@@ -29,7 +29,7 @@ const NeatBackground = () => {
       colorSaturation: 7,
       wireframe: false,
       colorBlending: 10,
-      backgroundColor: "#004E64",
+      backgroundColor: "#000000",
       backgroundAlpha: 1,
       grainScale: 3,
       grainSparsity: 0,
