@@ -231,7 +231,7 @@ const SocialToRevenue = () => {
             const floatR = isScattered ? Math.sin(floatTime * 0.35 + i * 1.5) * float.dr : 0;
 
             const pos = isScattered ? scattered : stacked;
-            const mobileStackScale = isMobile && !isScattered ? 1.35 : 1;
+            const mobileStackScale = isMobile && !isScattered ? MOBILE_STACK_SCALE : 1;
             const x = (pos.x + floatX) * mobileStackScale;
             const y = (pos.y + floatY) * mobileStackScale;
             const rotate = pos.rotate + floatR;
