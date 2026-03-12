@@ -15,21 +15,29 @@ const VIDEOS = [
 
 // Spread out — no overlapping (cards are ~160x284)
 const SCATTERED = [
-  { x: -340, y: -120, rotate: -12, scale: 0.88 },
-  { x: 0, y: -140, rotate: 6, scale: 0.90 },
-  { x: 340, y: -100, rotate: 14, scale: 0.86 },
-  { x: -260, y: 140, rotate: -8, scale: 0.87 },
-  { x: 80, y: 130, rotate: 10, scale: 0.89 },
-  { x: 360, y: 120, rotate: -5, scale: 0.85 },
+  { x: -440, y: -140, rotate: -12, scale: 0.86 },
+  { x: -180, y: -160, rotate: 6, scale: 0.88 },
+  { x: 120, y: -150, rotate: -8, scale: 0.87 },
+  { x: 420, y: -130, rotate: 14, scale: 0.85 },
+  { x: -360, y: 120, rotate: -6, scale: 0.87 },
+  { x: -100, y: 140, rotate: 10, scale: 0.86 },
+  { x: 200, y: 130, rotate: -5, scale: 0.88 },
+  { x: 460, y: 110, rotate: 8, scale: 0.85 },
+  { x: -260, y: -10, rotate: -3, scale: 0.89 },
+  { x: 340, y: -10, rotate: 4, scale: 0.87 },
 ];
 
 // Stacked like a fanned deck — each card offset so edges are visible
 const STACKED = [
-  { x: -10, y: 20, rotate: -4, scale: 0.90 },
-  { x: -6, y: 16, rotate: -2.5, scale: 0.92 },
-  { x: -3, y: 12, rotate: -1.2, scale: 0.94 },
-  { x: 0, y: 8, rotate: 0.5, scale: 0.96 },
-  { x: 3, y: 4, rotate: 1.5, scale: 0.98 },
+  { x: -18, y: 36, rotate: -5, scale: 0.86 },
+  { x: -15, y: 32, rotate: -4, scale: 0.88 },
+  { x: -12, y: 28, rotate: -3, scale: 0.90 },
+  { x: -9, y: 24, rotate: -2, scale: 0.92 },
+  { x: -6, y: 20, rotate: -1.2, scale: 0.93 },
+  { x: -3, y: 16, rotate: -0.5, scale: 0.94 },
+  { x: 0, y: 12, rotate: 0.3, scale: 0.96 },
+  { x: 3, y: 8, rotate: 0.8, scale: 0.97 },
+  { x: 5, y: 4, rotate: 1.2, scale: 0.98 },
   { x: 0, y: 0, rotate: 0, scale: 1 },
 ];
 
@@ -40,6 +48,10 @@ const FLOAT_OFFSETS = [
   { dx: -10, dy: -12, dr: -2.5 },
   { dx: 7, dy: 9, dr: 3.5 },
   { dx: -12, dy: -7, dr: -1.5 },
+  { dx: 9, dy: -10, dr: 3 },
+  { dx: -7, dy: 8, dr: -2 },
+  { dx: 11, dy: -6, dr: 1.5 },
+  { dx: -9, dy: 11, dr: -3 },
 ];
 
 const TARGET_VIEWS = 527_400;
