@@ -2,6 +2,7 @@ import HowItWorksSteps from "@/components/HowItWorksSteps";
 import NeatBackground from "@/components/NeatBackground";
 import SocialToRevenue from "@/components/SocialToRevenue";
 import ContentVault from "@/components/ContentVault";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -104,6 +105,9 @@ const Index = () => {
 
       {/* Content Vault */}
       <ContentVault />
+
+      {/* FAQ */}
+      <FAQ />
     </main>
   );
 };
