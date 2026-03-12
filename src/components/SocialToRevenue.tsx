@@ -210,14 +210,16 @@ const SocialToRevenue = () => {
                 }}
               >
                 <video
-                  src={video.src}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   className="w-full h-full object-cover"
                   style={{ pointerEvents: "none" }}
-                />
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
                 {/* Subtle overlay gradient for depth */}
                 <div
                   className="absolute inset-0"
