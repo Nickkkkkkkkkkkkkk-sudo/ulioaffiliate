@@ -38,7 +38,7 @@ const FLOAT_OFFSETS = [
   { dx: -12, dy: -7, dr: -1.5 },
 ];
 
-const TARGET_VIEWS = 10_247_000;
+const TARGET_VIEWS = 527_400;
 const COUNTER_DURATION = 3000;
 const REVENUE = "$20,000/mo";
 
