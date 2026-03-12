@@ -188,6 +188,8 @@ const SocialToRevenue = () => {
   const SCATTERED = isMobile ? SCATTERED_MOBILE : SCATTERED_DESKTOP;
   const CARD_W = isMobile ? 90 : 160;
   const CARD_H = isMobile ? 160 : 284;
+  const MOBILE_STACK_SCALE = 1.35;
+  const mobileStackOffset = (CARD_H * MOBILE_STACK_SCALE * MOBILE_STACK_SCALE) / 2 + 14;
 
   return (
     <section
@@ -229,7 +231,7 @@ const SocialToRevenue = () => {
             const floatR = isScattered ? Math.sin(floatTime * 0.35 + i * 1.5) * float.dr : 0;
 
             const pos = isScattered ? scattered : stacked;
-            const mobileStackScale = isMobile && !isScattered ? 1.35 : 1;
+            const mobileStackScale = isMobile && !isScattered ? MOBILE_STACK_SCALE : 1;
             const x = (pos.x + floatX) * mobileStackScale;
             const y = (pos.y + floatY) * mobileStackScale;
             const rotate = pos.rotate + floatR;
@@ -291,7 +293,7 @@ const SocialToRevenue = () => {
             className="absolute"
             style={{
               ...(isMobile
-                ? { top: 40, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(-20px) scale(0.9)' }
+                ? { bottom: `calc(50% + ${mobileStackOffset}px)`, left: '50%', transform: showCounter ? 'translateX(-50%) scale(1)' : 'translateX(-50%) translateY(20px) scale(0.9)' }
                 : { right: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showCounter ? 'translateX(0) scale(1)' : 'translateX(20px) scale(0.9)' }
               ),
               opacity: showCounter ? 1 : 0,
@@ -321,7 +323,7 @@ const SocialToRevenue = () => {
             className="absolute"
             style={{
               ...(isMobile
-                ? { bottom: 40, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(20px)' }
+                ? { top: `calc(50% + ${mobileStackOffset}px)`, left: '50%', transform: showFormula ? 'translateX(-50%)' : 'translateX(-50%) translateY(-20px)' }
                 : { left: `calc(50% + ${CARD_W / 2 + 40}px)`, transform: showFormula ? 'translateX(0)' : 'translateX(-20px)' }
               ),
               opacity: showFormula ? 1 : 0,
