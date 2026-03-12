@@ -13,14 +13,14 @@ const steps = [
     number: "02",
     title: 'Remix Our "High-Hook" Content Library',
     description:
-      "Access our library of raw screen recordings showing ulio.ai receptionists being built, sold, and booking appointments. Download these clips and add your own voiceover, face-cam, or captions to make them your own.",
+      "Access our library of raw screen recordings showing ulio.ai receptionists being built, sold, and booking appointments. Download these clips and add your own voiceover, face-cam, or captions.",
     icon: Film,
   },
   {
     number: "03",
     title: "Post, Tag, and Get Paid Monthly",
     description:
-      'Share your "remixed" videos on TikTok, Reels, or X. Every time a business signs up through your link, you earn a recurring commission for the life of that customer.',
+      'Share your "remixed" videos on TikTok, Reels, or X. Every sign-up through your link earns you recurring commission for the life of that customer.',
     icon: DollarSign,
   },
 ];
@@ -48,7 +48,6 @@ const HowItWorksSteps = () => {
       ref={sectionRef}
       className="relative z-10 flex flex-col items-center px-6 pb-32 pt-8"
     >
-      {/* Section heading */}
       <p className="text-xs font-medium uppercase tracking-[0.25em] text-primary/50 mb-3">
         How It Works
       </p>
@@ -72,64 +71,72 @@ const HowItWorksSteps = () => {
         </span>
       </h2>
 
-      {/* Steps */}
-      <div className="w-full max-w-3xl flex flex-col gap-6">
-        {steps.map((step, i) => (
+      {/* Horizontal steps */}
+      <div className="w-full max-w-5xl relative">
+        {/* Connecting line */}
+        <div className="hidden sm:block absolute top-[36px] left-[16%] right-[16%] h-px z-0">
           <div
-            key={step.number}
-            className="flex items-start gap-5 sm:gap-6 transition-all duration-700 ease-out"
+            className="h-full w-full rounded-full transition-all duration-1000 ease-out"
             style={{
+              background:
+                "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)",
               opacity: visible ? 1 : 0,
-              transform: visible
-                ? "translateY(0) scale(1)"
-                : "translateY(40px) scale(0.97)",
-              filter: visible ? "blur(0px)" : "blur(6px)",
-              transitionDelay: `${i * 200}ms`,
+              transitionDelay: "600ms",
             }}
-          >
-            {/* Left: number + line */}
-            <div className="flex flex-col items-center flex-shrink-0">
+          />
+          <div
+            className="absolute inset-0 rounded-full blur-sm transition-all duration-1000 ease-out"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.15), transparent)",
+              opacity: visible ? 1 : 0,
+              transitionDelay: "600ms",
+            }}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className="flex flex-col items-center text-center transition-all duration-700 ease-out"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible
+                  ? "translateY(0) scale(1)"
+                  : "translateY(30px) scale(0.95)",
+                filter: visible ? "blur(0px)" : "blur(6px)",
+                transitionDelay: `${i * 250}ms`,
+              }}
+            >
+              {/* Icon */}
               <div
-                className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20"
+                className="relative z-10 flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-primary/20 mb-5 transition-transform duration-500 hover:scale-110"
                 style={{
                   background: "rgba(139,92,246,0.08)",
-                  boxShadow: "0 0 20px hsla(271,76%,53%,0.15)",
+                  boxShadow:
+                    "0 0 24px hsla(271,76%,53%,0.15), inset 0 0 12px hsla(271,76%,53%,0.05)",
                 }}
               >
-                <step.icon className="h-5 w-5 text-primary" />
+                <step.icon className="h-6 w-6 text-primary" />
               </div>
-              {i < steps.length - 1 && (
-                <div
-                  className="w-px flex-1 min-h-[40px] mt-2 transition-all duration-700 ease-out"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, hsl(var(--primary) / 0.3), transparent)",
-                    opacity: visible ? 1 : 0,
-                    transitionDelay: `${i * 200 + 300}ms`,
-                  }}
-                />
-              )}
-            </div>
 
-            {/* Right: content */}
-            <div className="pt-1 pb-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-primary/40">
+              {/* Label */}
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-primary/40 mb-1">
                 Step {step.number}
               </span>
               <h3
-                className="text-base sm:text-lg font-bold text-foreground mt-1 mb-2"
-                style={{
-                  fontFamily: "Helvetica, Arial, sans-serif",
-                }}
+                className="text-base font-bold text-foreground mt-1 mb-2"
+                style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
               >
                 {step.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+              <p className="text-xs text-muted-foreground leading-relaxed max-w-[260px]">
                 {step.description}
               </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
