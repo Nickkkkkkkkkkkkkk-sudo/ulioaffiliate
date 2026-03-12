@@ -1,3 +1,5 @@
+import HowItWorksSteps from "@/components/HowItWorksSteps";
+
 const Index = () => {
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
@@ -90,51 +92,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About section */}
-      <section id="about" className="relative z-10 flex justify-center px-6 pb-32">
-        <div
-          className="w-full max-w-2xl rounded-2xl p-8"
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            backdropFilter: "blur(12px) saturate(120%)",
-            WebkitBackdropFilter: "blur(12px) saturate(120%)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            boxShadow:
-              "0 8px 32px rgba(0,0,0,0.4), inset 0 0 4px rgba(255,255,255,0.05)",
-          }}
-        >
-          <h2
-            className="text-xl font-bold mb-3 text-foreground"
-            style={{
-              fontFamily: "Helvetica, Arial, sans-serif",
-              textShadow: "0 0 20px rgba(255,255,255,0.1)",
-            }}
-          >
-            About the Program
-          </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            ulio.ai is the AI tool creators can't stop posting about. Our affiliate program gives you a
-            direct way to monetize your audience by sharing something they'll genuinely love.
-          </p>
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { label: "Commission", value: "30%" },
-              { label: "Cookie Window", value: "60 days" },
-              { label: "Payouts", value: "Monthly" },
-            ].map((item) => (
-              <div key={item.label} className="text-center">
-                <p
-                  className="text-2xl font-bold text-primary"
-                  style={{ textShadow: "0 0 16px hsla(271,76%,53%,0.4)" }}
-                >
-                  {item.value}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* How It Works Steps */}
+      <HowItWorksSteps />
     </main>
   );
 };
