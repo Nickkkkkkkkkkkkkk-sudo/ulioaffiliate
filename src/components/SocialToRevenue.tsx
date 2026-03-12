@@ -170,8 +170,10 @@ const SocialToRevenue = () => {
   const showFormula = phase === "formula" || phase === "hold";
   const isUnstacking = phase === "unstacking";
 
-  const CARD_W = 160;
-  const CARD_H = 284;
+  const isMobile = useIsMobile();
+  const CARD_W = isMobile ? 90 : 160;
+  const CARD_H = isMobile ? 160 : 284;
+  const SCALE_FACTOR = isMobile ? 0.55 : 1;
 
   return (
     <section
